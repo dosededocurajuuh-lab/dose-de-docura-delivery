@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dose de Doçura — Sobremesa Artesanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Jost:wght@300;400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FBE4E7;
+    --bg-soft: #FFF3EC;
+    --cream: #FFFAF3;
+    --choc: #4A2C1D;
+    --choc-deep: #3A2015;
+    --caramel: #C08654;
+    --caramel-soft: #E3B98A;
+    --pink: #F0A9BA;
+    --pink-deep: #E38CA1;
+    --gold: #C9A66B;
+    --ink: #4A2C1D;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    color:var(--choc-deep);
+    font-weight:600;
+  }
+
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
+  button{ font-family:'Jost',sans-serif; border:none; background:none; cursor:pointer; }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+
+  .swirl-divider{ width:100%; height:46px; display:block; }
+  .swirl-divider.into-soft path{ fill:var(--bg-soft); }
+  .swirl-divider.into-bg path{ fill:var(--bg); }
+  .swirl-divider.into-wine path{ fill:var(--choc-deep); }
+
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(251,228,231,0.9);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid rgba(74,44,29,0.08);
+  }
+  .nav{
+    max-width:1120px; margin:0 auto; padding:14px 32px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .brand{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:2rem;
+    color:var(--choc-deep);
+    letter-spacing:0.3px;
+    display:flex;
+    flex-direction:column;
+    line-height:1;
+  }
+  .brand .slogan{
+    font-family:'Jost', sans-serif;
+    font-size:0.6rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--caramel);
+    font-weight:500;
+    margin-top:2px;
+  }
+  .nav-links{ display:flex; gap:32px; font-size:0.92rem; letter-spacing:0.02em; }
+  .nav-links a{ position:relative; padding-bottom:4px; color:var(--choc); transition:color .25s ease; }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0%; height:1px;
+    background:var(--gold); transition:width .3s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  .brand-group{ display:flex; align-items:center; gap:12px; }
+  .store-status-wrap{ display:flex; flex-direction:column; gap:3px; }
+  .store-status{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.72rem; font-weight:500; padding:5px 11px; border-radius:999px;
+    background:var(--bg-soft); color:#7a5238; white-space:nowrap;
+  }
+  .store-status.open{ color:#2f7d54; background:rgba(63,167,114,0.14); }
+  .store-status.closed{ color:#a8402f; background:rgba(181,71,63,0.12); }
+  .store-status-sub{
+    font-size:0.66rem; color:#9c7a63; padding-left:11px; display:none; white-space:nowrap;
+  }
+
+  .nav-right{ display:flex; align-items:center; gap:16px; }
+
+  .cart-btn{
+    position:relative;
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 3px 10px rgba(74,44,29,0.1);
+    transition:transform .2s ease;
+  }
+  .cart-btn:hover{ transform:translateY(-2px); }
+  .cart-btn svg{ width:20px; height:20px; color:var(--choc-deep); }
+  .cart-badge{
+    position:absolute; top:-4px; right:-4px;
+    background:var(--pink-deep);
+    color:#fff;
+    font-size:0.68rem;
+    font-weight:600;
+    min-width:18px; height:18px;
+    border-radius:999px;
+    display:flex; align-items:center; justify-content:center;
+    padding:0 4px;
+  }
+
+  .nav-cta{
+    background:var(--choc-deep);
+    color:var(--cream) !important;
+    padding:10px 20px;
+    border-radius:999px;
+    font-size:0.88rem;
+    letter-spacing:0.02em;
+    transition:background .25s ease, transform .25s ease;
+  }
+  .nav-cta:hover{ background:var(--choc); transform:translateY(-1px); }
+
+  .hero{ position:relative; padding:172px 32px 90px; text-align:center; overflow:hidden; }
+  .hero-blob{ position:absolute; border-radius:50%; filter:blur(2px); opacity:0.55; z-index:0; }
+  .blob1{ width:280px; height:280px; background:var(--pink); top:60px; left:-90px; }
+  .blob2{ width:200px; height:200px; background:var(--gold); opacity:0.3; bottom:0; right:-60px; }
+
+  .hero-eyebrow{
+    position:relative; z-index:1; display:inline-flex; align-items:center; gap:10px;
+    font-size:0.82rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--pink-deep);
+    margin-bottom:22px;
+  }
+  .hero-eyebrow svg{ width:16px; height:16px; }
+
+  .hero h1{
+    position:relative; z-index:1; font-size:clamp(2.6rem, 6vw, 4.6rem); line-height:1.08;
+    max-width:820px; margin:0 auto 22px;
+  }
+  .hero h1 em{ font-style:italic; color:var(--pink-deep); }
+  .hero p.lede{
+    position:relative; z-index:1; max-width:520px; margin:0 auto 38px; font-size:1.08rem; color:#7a5238;
+  }
+  .hero-actions{ position:relative; z-index:1; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:15px 30px; border-radius:999px;
+    font-size:0.95rem; letter-spacing:0.02em;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn-primary{ background:var(--choc-deep); color:var(--cream); box-shadow:0 8px 24px rgba(74,44,29,0.25); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(74,44,29,0.32); }
+  .btn-ghost{ border:1px solid rgba(74,44,29,0.3); color:var(--choc-deep); }
+  .btn-ghost:hover{ background:rgba(74,44,29,0.06); }
+
+  .float-icons{ position:relative; z-index:1; margin-top:60px; display:flex; justify-content:center; gap:56px; }
+  .float-icons svg{ width:46px; height:46px; animation:bob 5s ease-in-out infinite; }
+  .float-icons svg:nth-child(2){ animation-delay:1.2s; }
+  .float-icons svg:nth-child(3){ animation-delay:2.4s; }
+  .float-icons svg:nth-child(4){ animation-delay:0.6s; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+
+  section{ padding:90px 0; position:relative; }
+  .section-soft{ background:var(--bg-soft); }
+  .eyebrow{
+    font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--pink-deep);
+    margin-bottom:12px; display:block;
+  }
+  .section-head{ text-align:center; max-width:600px; margin:0 auto 56px; }
+  .section-head h2{ font-size:clamp(2rem, 4vw, 2.7rem); margin-bottom:14px; }
+  .section-head p{ color:#7a5238; font-size:1.02rem; }
+
+
+  /* ---------- navegação de categorias (estilo iFood) ---------- */
+  .category-nav-wrap{
+    position: sticky; top: 72px; z-index: 40;
+    background: var(--bg);
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(74,44,29,0.08);
+  }
+  .category-nav{
+    display:flex; gap:10px; overflow-x:auto; padding:0 32px 2px;
+    scrollbar-width:none;
+  }
+  .category-nav::-webkit-scrollbar{ display:none; }
+  .category-chip{
+    flex-shrink:0; padding:10px 20px; border-radius:999px;
+    border:1px solid rgba(74,44,29,0.22); background:var(--cream);
+    color:var(--choc-deep); font-size:0.85rem; white-space:nowrap;
+    transition:all .2s ease;
+  }
+  .category-chip.active, .category-chip:hover{
+    background:var(--choc-deep); color:var(--cream); border-color:var(--choc-deep);
+  }
+
+  /* ---------- blocos de categoria + lista de itens ---------- */
+  .menu-category-block{ padding-top:52px; scroll-margin-top:150px; }
+  .menu-category-block:first-of-type{ padding-top:36px; }
+  .category-title{ font-size:1.5rem; margin-bottom:4px; }
+  .category-sub{ font-size:0.88rem; color:#8a6549; margin-bottom:6px; }
+
+  .menu-list{ display:flex; flex-direction:column; }
+  .menu-list-item{
+    display:flex; align-items:flex-start; gap:16px; flex-wrap:wrap;
+    padding:22px 4px; border-bottom:1px dashed rgba(74,44,29,0.16);
+    position:relative;
+  }
+  .menu-list .menu-list-item:last-child{ border-bottom:none; }
+
+  .item-thumb{
+    width:52px; height:52px; border-radius:14px; background:var(--bg-soft);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden;
+  }
+  .item-thumb svg{ width:26px; height:26px; }
+  .item-thumb img{ width:100%; height:100%; object-fit:cover; }
+  .item-thumb-emoji{ font-size:1.5rem; }
+
+  .item-info{ flex:1 1 220px; min-width:180px; }
+  .item-info h4{
+    font-size:1.02rem; margin-bottom:4px;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .item-short-desc{ font-size:0.87rem; color:#8a6549; margin-bottom:6px; }
+  .detail-link{
+    font-size:0.8rem; color:var(--choc-deep); text-decoration:underline;
+    text-underline-offset:2px; font-weight:500;
+  }
+  .detail-link:hover{ color:var(--gold); }
+  .item-detail-content{ display:none; }
+
+  .item-flavor-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .item-flavor-tags span{
+    font-size:0.76rem; color:var(--choc); background:var(--bg-soft);
+    padding:5px 12px; border-radius:999px; border:1px solid rgba(74,44,29,0.1);
+  }
+
+  .item-action{
+    display:flex; align-items:center; gap:16px; margin-left:auto; flex-shrink:0;
+  }
+  .item-action .price{ font-family:'Fraunces',serif; font-weight:600; color:var(--choc-deep); font-size:1.05rem; white-space:nowrap; }
+
+  .item-options{
+    display:flex; flex-wrap:wrap; gap:10px; width:100%;
+    margin-top:6px;
+  }
+
+  .add-btn{
+    width:36px; height:36px; border-radius:50%; background:var(--choc-deep); color:var(--cream);
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+    transition:background .25s ease, transform .25s ease; flex-shrink:0;
+  }
+  .add-btn:hover{ background:var(--gold); transform:scale(1.08); }
+  .add-btn.added{ background:#3FA772; }
+
+  .option-pill{
+    width:auto; height:auto; border-radius:999px;
+    background:var(--bg-soft); color:var(--choc-deep);
+    border:1px solid rgba(74,44,29,0.14);
+    padding:10px 20px; font-size:0.88rem; display:inline-flex; align-items:center; gap:8px;
+  }
+  .option-pill b{ font-family:'Fraunces',serif; font-weight:600; }
+  .option-pill:hover{ background:var(--choc-deep); color:var(--cream); }
+  .option-pill.added{ background:#3FA772; color:#fff; }
+
+  .addon-note{
+    background:var(--bg-soft); border-radius:16px; padding:18px 22px;
+    font-size:0.88rem; color:#6b4530; margin-top:18px;
+  }
+  .addon-note strong{ color:var(--choc-deep); }
+
+  .stock-flag{
+    display:none; font-size:0.66rem; font-weight:500; color:#fff;
+    background:var(--choc-deep); padding:3px 10px; border-radius:999px;
+    letter-spacing:0.05em; text-transform:uppercase;
+  }
+  .menu-list-item.out-of-stock{ opacity:0.5; }
+  .menu-list-item.out-of-stock .stock-flag{ display:inline-block; }
+  .menu-list-item.out-of-stock .add-btn,
+  .menu-list-item.out-of-stock .option-pill{ pointer-events:none; }
+
+  /* ---------- modal de detalhes do produto ---------- */
+  .detail-icon{
+    width:64px; height:64px; border-radius:16px; background:var(--bg-soft);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px; overflow:hidden;
+  }
+  .detail-icon svg{ width:32px; height:32px; }
+  .detail-icon img{ width:100%; height:100%; object-fit:cover; }
+  .detail-full-desc{ font-size:0.92rem; color:#6b4530; margin-bottom:4px; }
+  .detail-esgotado-note{
+    font-size:0.82rem; color:#B5473F; background:rgba(181,71,63,0.1);
+    padding:8px 14px; border-radius:10px; margin-bottom:14px; display:none;
+  }
+  #productDetailModal .item-options{ margin-top:14px; }
+  #productDetailModal .addon-note{ margin-top:18px; }
+  #productDetailModal.out-of-stock .add-btn,
+  #productDetailModal.out-of-stock .option-pill,
+  #productDetailModal.out-of-stock .detail-add-btn,
+  #productDetailModal.out-of-stock .radio-pill,
+  #productDetailModal.out-of-stock .checkbox-pill,
+  #productDetailModal.out-of-stock .detail-flavor-select{ pointer-events:none; opacity:0.5; }
+  #productDetailModal.out-of-stock #detailEsgotadoNote{ display:block; }
+
+  .pickup-address-box{
+    background:var(--bg-soft); border-radius:12px; padding:16px 18px;
+    font-size:0.92rem; color:var(--choc-deep); margin-bottom:20px; line-height:1.5;
+  }
+
+  .cart-fulfillment-info{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    background:var(--bg-soft); margin:0 20px 4px; padding:10px 16px;
+    border-radius:12px; font-size:0.83rem; color:var(--choc-deep);
+  }
+  .cart-fulfillment-info span{ flex:1; }
+  .change-fulfillment-btn{
+    font-size:0.78rem; text-decoration:underline; color:var(--choc-deep); flex-shrink:0;
+  }
+
+  .detail-field{ margin-bottom:20px; }
+  .detail-field-label{
+    display:block; font-size:0.85rem; font-weight:500; color:var(--choc-deep); margin-bottom:10px;
+  }
+  .size-options, .addon-options{ display:flex; flex-wrap:wrap; gap:10px; }
+  .radio-pill, .checkbox-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 16px; border-radius:999px; border:1px solid rgba(74,44,29,0.18);
+    background:var(--bg-soft); font-size:0.88rem; color:var(--choc-deep); cursor:pointer;
+    transition:all .2s ease;
+  }
+  .radio-pill input, .checkbox-pill input{ accent-color:var(--choc-deep); }
+  .radio-pill:has(input:checked), .checkbox-pill:has(input:checked){
+    background:var(--choc-deep); color:var(--cream); border-color:var(--choc-deep);
+  }
+  .radio-pill b{ font-family:'Fraunces',serif; }
+  .checkbox-pill span{ font-size:0.78rem; opacity:0.85; }
+  .detail-flavor-select{
+    width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(74,44,29,0.2);
+    background:var(--bg-soft); color:var(--ink); font-family:'Jost',sans-serif; font-size:0.92rem;
+  }
+  .detail-add-btn{ width:100%; justify-content:center; margin-top:6px; }
+
+
+  /* ---------- admin ---------- */
+  .admin-overlay{
+    position:fixed; inset:0; background:rgba(58,32,21,0.5);
+    z-index:300; opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .admin-overlay.open{ opacity:1; pointer-events:auto; }
+
+  .admin-modal{
+    position:fixed; top:50%; left:50%; transform:translate(-50%,-48%) scale(0.97);
+    background:var(--cream); border-radius:22px; padding:36px 32px;
+    width:420px; max-width:90vw; max-height:85vh; overflow-y:auto;
+    z-index:301; box-shadow:0 30px 70px rgba(58,32,21,0.3);
+    opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease;
+  }
+  .admin-modal.open{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1); }
+  .admin-modal.admin-dashboard{ width:520px; }
+  .admin-modal h3{ font-size:1.4rem; margin-bottom:8px; }
+  .admin-modal-close{
+    position:absolute; top:18px; right:18px; width:32px; height:32px;
+    border-radius:50%; background:var(--bg-soft); color:var(--choc-deep);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .admin-modal-close:hover{ background:var(--pink); }
+  .admin-sub{ font-size:0.88rem; color:#7a5238; margin-bottom:20px; }
+  .admin-input{
+    width:100%; padding:13px 16px; border-radius:12px; border:1px solid rgba(74,44,29,0.2);
+    font-family:'Jost',sans-serif; font-size:0.95rem; margin-bottom:12px; background:var(--bg-soft);
+    color:var(--ink);
+  }
+  .admin-input:focus{ outline:2px solid var(--gold); }
+  .admin-error{ color:#B5473F; font-size:0.82rem; margin-bottom:12px; }
+  .admin-submit{ width:100%; justify-content:center; }
+  .admin-note{ text-align:center; font-size:0.85rem; color:#3FA772; margin-top:14px; font-weight:500; }
+
+  .admin-tabs{ display:flex; gap:10px; margin-bottom:24px; border-bottom:1px solid rgba(74,44,29,0.12); }
+  .admin-tab{
+    padding:10px 4px; font-size:0.9rem; color:#9c7a63; border-bottom:2px solid transparent;
+    margin-bottom:-1px;
+  }
+  .admin-tab.active{ color:var(--choc-deep); border-bottom-color:var(--choc-deep); font-weight:500; }
+  .admin-panel{ display:none; }
+  .admin-panel.active{ display:block; }
+
+  .products-admin-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:8px; max-height:400px; overflow-y:auto; padding-right:4px; }
+  .product-admin-row{
+    display:flex; align-items:center; gap:12px;
+    background:var(--bg-soft); padding:10px 14px; border-radius:12px;
+  }
+  .product-admin-thumb{
+    width:40px; height:40px; border-radius:10px; object-fit:cover; flex-shrink:0; background:var(--cream);
+  }
+  .product-admin-info{ flex:1; min-width:0; }
+  .product-admin-info b{ display:block; font-size:0.88rem; color:var(--choc-deep); }
+  .product-admin-info span{ font-size:0.76rem; color:#9c7a63; }
+  .product-admin-actions{ display:flex; gap:8px; flex-shrink:0; }
+  .product-admin-actions button{
+    font-size:0.78rem; padding:6px 12px; border-radius:999px; border:1px solid rgba(74,44,29,0.18);
+    background:var(--cream); color:var(--choc-deep);
+  }
+  .product-admin-actions button.delete-btn{ color:#B5473F; border-color:rgba(181,71,63,0.3); }
+
+  .editor-rows{ display:flex; flex-direction:column; gap:8px; }
+  .editor-row{ display:flex; gap:8px; align-items:center; }
+  .editor-row input{
+    padding:9px 12px; border-radius:10px; border:1px solid rgba(74,44,29,0.2);
+    background:var(--cream); color:var(--ink); font-family:'Jost',sans-serif; font-size:0.86rem;
+  }
+  .editor-row input.editor-label{ flex:1; min-width:0; }
+  .editor-row input.editor-price{ width:90px; }
+  .editor-row button{
+    width:30px; height:30px; border-radius:50%; background:var(--bg-soft); color:#B5473F;
+    flex-shrink:0; font-size:1rem;
+  }
+
+  .orders-list{ display:flex; flex-direction:column; gap:12px; max-height:460px; overflow-y:auto; padding-right:4px; }
+  .order-card{ background:var(--bg-soft); border-radius:14px; padding:16px 18px; }
+  .order-card-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap:10px; }
+  .order-card-head b{ font-family:'Fraunces',serif; color:var(--choc-deep); font-size:1rem; }
+  .order-card-head span{ font-size:0.76rem; color:#9c7a63; }
+  .order-card-fulfillment{ font-size:0.84rem; color:#6b4530; margin-bottom:8px; }
+  .order-card-items{ font-size:0.84rem; color:#6b4530; margin-bottom:10px; line-height:1.6; }
+  .order-card-footer{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .order-card-footer b{ font-family:'Fraunces',serif; color:var(--choc-deep); }
+  .order-status-select{
+    padding:8px 12px; border-radius:999px; border:1px solid rgba(74,44,29,0.2);
+    background:var(--cream); color:var(--choc-deep); font-family:'Jost',sans-serif; font-size:0.82rem;
+  }
+  .orders-empty{ text-align:center; color:#a8846b; font-size:0.88rem; padding:24px; }
+
+  .hours-rows{ display:flex; flex-direction:column; gap:14px; margin-bottom:20px; }
+  .hours-row-block{
+    background:var(--bg-soft); border-radius:14px; padding:14px 16px;
+  }
+  .hours-day-toggle{
+    display:flex; align-items:center; gap:10px; cursor:pointer; font-size:0.9rem; color:var(--choc-deep);
+  }
+  .hours-day-toggle input{ accent-color:var(--choc-deep); }
+  .hours-details{ margin-top:12px; padding-left:26px; }
+  .hours-time-row{ display:flex; gap:16px; }
+  .hours-time-row .detail-field{ flex:1; margin-bottom:12px; }
+  .hours-pause-toggle{
+    display:flex; align-items:center; gap:8px; font-size:0.83rem; color:var(--choc); margin-bottom:10px; cursor:pointer;
+  }
+  .hours-pause-toggle input{ accent-color:var(--choc-deep); }
+
+  .stock-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:20px; max-height:340px; overflow-y:auto; padding-right:4px; }
+  .stock-row{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    background:var(--bg-soft); padding:10px 14px; border-radius:12px;
+  }
+  .stock-row span{ font-size:0.88rem; color:var(--choc-deep); }
+  .stock-row input{
+    width:74px; padding:8px 10px; border-radius:8px; border:1px solid rgba(74,44,29,0.2);
+    font-family:'Jost',sans-serif; text-align:center; background:var(--cream); color:var(--ink);
+  }
+
+  .revenue-total{
+    background:var(--choc-deep); color:var(--cream); border-radius:16px; padding:22px;
+    text-align:center; font-family:'Fraunces',serif; font-size:1.8rem; font-weight:600; margin-bottom:22px;
+  }
+  .revenue-total span{ display:block; font-family:'Jost',sans-serif; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--pink); margin-top:6px; font-weight:400; }
+  .revenue-monthly{ display:flex; flex-direction:column; gap:8px; margin-bottom:20px; max-height:260px; overflow-y:auto; }
+  .revenue-row{
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--bg-soft); padding:12px 16px; border-radius:12px; font-size:0.9rem;
+  }
+  .revenue-row b{ font-family:'Fraunces',serif; color:var(--choc-deep); }
+  .revenue-empty{ text-align:center; color:#a8846b; font-size:0.88rem; padding:20px; }
+  .admin-note-btn{ font-size:0.8rem; color:#B5473F; text-decoration:underline; display:block; margin:0 auto; }
+
+  footer{ background:var(--bg-soft); padding:56px 32px 28px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:48px; margin-bottom:40px; }
+  .footer-brand .brand{ margin-bottom:14px; display:inline-flex; }
+  .footer-brand p{ font-size:0.9rem; color:#8a6549; max-width:280px; }
+  .footer-col h4{
+    font-family:'Jost',sans-serif; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--choc-deep); margin-bottom:16px;
+  }
+  .footer-col a, .footer-col p{ display:block; font-size:0.9rem; color:#7a5238; margin-bottom:10px; }
+  .footer-social{ display:flex; gap:14px; margin-top:6px; }
+  .footer-social a{
+    width:36px; height:36px; border-radius:50%; background:var(--cream);
+    display:flex; align-items:center; justify-content:center; transition:background .25s ease;
+  }
+  .footer-social a:hover{ background:var(--pink); }
+  .footer-social svg{ width:16px; height:16px; color:var(--choc-deep); }
+  .footer-bottom{ border-top:1px solid rgba(74,44,29,0.12); padding-top:22px; text-align:center; font-size:0.8rem; color:#a8846b; }
+
+  .cart-overlay{
+    position:fixed; inset:0; background:rgba(58,32,21,0.4);
+    z-index:200; opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .cart-overlay.open{ opacity:1; pointer-events:auto; }
+
+  .cart-drawer{
+    position:fixed; top:0; right:0; height:100%; width:400px; max-width:90vw;
+    background:var(--cream); z-index:201;
+    box-shadow:-10px 0 40px rgba(58,32,21,0.2);
+    transform:translateX(100%); transition:transform .35s ease;
+    display:flex; flex-direction:column;
+  }
+  .cart-drawer.open{ transform:translateX(0); }
+
+  .cart-header{
+    padding:26px 28px; display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px solid rgba(74,44,29,0.1);
+  }
+  .cart-header h3{ font-size:1.3rem; }
+  .cart-close{
+    width:34px; height:34px; border-radius:50%; background:var(--bg-soft);
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:var(--choc-deep);
+  }
+  .cart-close:hover{ background:var(--pink); }
+
+  .cart-items{ flex:1; overflow-y:auto; padding:20px 28px; }
+  .cart-empty{ text-align:center; color:#a8846b; padding:60px 10px; font-size:0.95rem; }
+  .cart-empty svg{ width:56px; height:56px; margin:0 auto 16px; opacity:0.5; }
+
+  .cart-item{
+    display:flex; align-items:center; gap:14px; padding:16px 0;
+    border-bottom:1px dashed rgba(74,44,29,0.14);
+  }
+  .cart-item-icon{
+    width:44px; height:44px; border-radius:50%; background:var(--bg-soft);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .cart-item-icon svg{ width:22px; height:22px; }
+  .cart-item-info{ flex:1; min-width:0; }
+  .cart-item-info h4{ font-size:0.95rem; font-family:'Fraunces',serif; color:var(--choc-deep); margin-bottom:4px; }
+  .cart-item-info .unit-price{ font-size:0.78rem; color:#a8846b; }
+  .qty-control{ display:flex; align-items:center; gap:8px; }
+  .qty-btn{
+    width:24px; height:24px; border-radius:50%; background:var(--bg-soft); color:var(--choc-deep);
+    display:flex; align-items:center; justify-content:center; font-size:0.9rem;
+  }
+  .qty-btn:hover{ background:var(--pink); }
+  .qty-val{ font-size:0.9rem; min-width:16px; text-align:center; }
+  .cart-item-remove{ color:var(--pink-deep); font-size:0.78rem; margin-top:6px; }
+  .cart-item-remove:hover{ text-decoration:underline; }
+  .cart-item-total{ font-family:'Fraunces',serif; font-weight:600; color:var(--choc-deep); font-size:0.95rem; white-space:nowrap; }
+
+  .cart-footer{ padding:24px 28px 28px; border-top:1px solid rgba(74,44,29,0.1); }
+  .cart-total-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+  .cart-total-row span{ font-size:0.95rem; color:#6b4530; }
+  .cart-total-row b{ font-family:'Fraunces',serif; font-size:1.4rem; color:var(--choc-deep); }
+  .cart-payment-block{ margin-bottom:18px; }
+  .cart-payment-block .detail-field-label{ margin-bottom:8px; }
+  .payment-options{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
+  .payment-note{ font-size:0.74rem; color:#9c7a63; }
+  .payment-error{ font-size:0.78rem; color:#B5473F; margin-top:4px; }
+  .cart-checkout{
+    width:100%; display:flex; align-items:center; justify-content:center; gap:10px;
+    background:#3FA772; color:#fff; padding:15px; border-radius:999px; font-size:0.98rem;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .cart-checkout:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.18); }
+  .cart-checkout svg{ width:20px; height:20px; }
+  .cart-checkout:disabled{ opacity:0.5; pointer-events:none; }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } .float-icons svg{ animation:none; } }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  @media (max-width: 880px){
+    .nav-links{ display:none; }
+    .footer-grid{ grid-template-columns:1fr; gap:32px; }
+    .float-icons{ gap:32px; }
+  }
+  @media (max-width: 560px){
+    .hero{ padding:150px 20px 70px; }
+    .wrap{ padding:0 20px; }
+    .cart-drawer{ width:100%; max-width:100vw; }
+    .category-nav{ padding:0 20px 2px; }
+    .item-action{ margin-left:0; width:100%; justify-content:space-between; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="brand-group">
+      <a href="#top" class="brand">Dose de Doçura<span class="slogan">Sobremesa Artesanal</span></a>
+      <div class="store-status-wrap">
+        <span class="store-status" id="storeStatusBadge"></span>
+        <span class="store-status-sub" id="storeStatusSub"></span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#cardapio">Cardápio</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" id="cartOpenBtn" aria-label="Abrir carrinho de compras">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.7 12.4a2 2 0 002 1.6h8.2a2 2 0 002-1.6L21 8H6"/></svg>
+        <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+      </button>
+      <a href="#" class="nav-cta" onclick="openCart(); return false;">Fazer pedido</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+
+    <span class="hero-eyebrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c1 2-1 3-1 5a3 3 0 106 0c0-2-2-3-1-5"/><path d="M8 21h8M9 21v-3a3 3 0 116 0v3"/></svg>
+      feito à mão, dia após dia
+    </span>
+
+    <h1>Doces que carregam <em>carinho</em><br>em cada colherada</h1>
+    <p class="lede">Trufas tradicionais e gourmet, tortinhas, afogadinhos de brownie e copos recheados, preparados em pequenas porções para garantir frescor e sabor de verdadeiro afeto.</p>
+
+    <div class="hero-actions">
+      <a href="#cardapio" class="btn btn-primary">Ver cardápio</a>
+      <a href="#" class="btn btn-ghost" onclick="openCart(); return false;">Pedir pelo WhatsApp</a>
+    </div>
+
+    <div class="float-icons" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#4A2C1D" stroke-width="1.4"><path d="M5 10a7 7 0 0114 0v1H5v-1z"/><path d="M4 11h16l-1.4 8.2a2 2 0 01-2 1.8H7.4a2 2 0 01-2-1.8L4 11z"/><path d="M12 3v2"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#C9A66B" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><circle cx="12" cy="14" r="1"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E38CA1" stroke-width="1.4"><path d="M12 21s-7-4.6-9.5-9C.8 8.3 3 4 7 4c2 0 3.6 1.2 5 3 1.4-1.8 3-3 5-3 4 0 6.2 4.3 4.5 8-2.5 4.4-9.5 9-9.5 9z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#4A2C1D" stroke-width="1.4"><path d="M4 14c2-1 4-1 6 0s4 1 6 0 4-1 4-1"/><path d="M4 18c2-1 4-1 6 0s4 1 6 0 4-1 4-1"/><path d="M6 14V8a6 6 0 0112 0v6"/></svg>
+    </div>
+
+    <svg class="swirl-divider into-bg" viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,30 C150,60 300,0 450,30 C600,60 750,0 900,30 C1050,60 1150,10 1200,30 L1200,60 L0,60 Z"></path>
+    </svg>
+  </section>
+
+  <section id="cardapio">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Cardápio</span>
+        <h2>Escolha o seu doce favorito</h2>
+        <p>Preços por unidade. Escolha o tamanho, o sabor e os adicionais direto por aqui.</p>
+      </div>
+    </div>
+
+    <div class="category-nav-wrap">
+      <div class="category-nav wrap" id="categoryNav" role="tablist" aria-label="Categorias do cardápio"></div>
+    </div>
+
+    <div class="wrap">
+      <div id="menuContainer"></div>
+    </div>
+  </section>
+
+  <div class="admin-overlay" id="detailOverlay"></div>
+  <div class="admin-modal" id="productDetailModal">
+    <button class="admin-modal-close" id="detailCloseBtn" aria-label="Fechar detalhes">✕</button>
+    <div class="detail-icon" id="detailIcon"></div>
+    <h3 id="detailTitle"></h3>
+    <p class="detail-esgotado-note" id="detailEsgotadoNote" style="display:none;">Este produto está esgotado no momento.</p>
+    <div id="detailBody"></div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand">Dose de Doçura<span class="slogan">Sobremesa Artesanal</span></span>
+        <p>Sobremesas artesanais feitas com ingredientes selecionados e muito carinho, entregues fresquinhas até você.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#cardapio">Cardápio</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <p>(83) 99300-7342</p>
+        <p>contato@dosededocura.com.br</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://wa.me/5583993007342" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Dose de Doçura. Todos os direitos reservados. · <a href="#" id="adminLinkBtn" style="text-decoration:underline; opacity:0.7;">Área administrativa</a></div>
+  </div>
+</footer>
+
+<div class="admin-overlay" id="adminOverlay"></div>
+
+<div class="admin-modal" id="adminLoginModal">
+  <button class="admin-modal-close" id="adminLoginClose" aria-label="Fechar">✕</button>
+  <h3>Área administrativa</h3>
+  <p class="admin-sub">Acesso restrito. Digite a senha para continuar.</p>
+  <input type="password" id="adminPasswordInput" placeholder="Senha" class="admin-input" autocomplete="off">
+  <p class="admin-error" id="adminError" style="display:none;">Senha incorreta. Tente novamente.</p>
+  <button class="btn btn-primary admin-submit" id="adminLoginSubmit">Entrar</button>
+</div>
+
+<div class="admin-modal admin-dashboard" id="adminDashboard">
+  <button class="admin-modal-close" id="adminDashClose" aria-label="Fechar">✕</button>
+  <h3>Painel administrativo</h3>
+  <div class="admin-tabs">
+    <button class="admin-tab active" data-admin-tab="produtos">Produtos</button>
+    <button class="admin-tab" data-admin-tab="pedidos">Pedidos</button>
+    <button class="admin-tab" data-admin-tab="faturamento">Faturamento</button>
+    <button class="admin-tab" data-admin-tab="horarios">Horários</button>
+  </div>
+
+  <div class="admin-panel active" data-admin-panel="produtos">
+    <p class="admin-sub">Adicione, edite ou remova produtos do cardápio — nome, categoria, preço, sabores, adicionais, imagem e estoque.</p>
+    <button class="btn btn-primary admin-submit" id="addProductBtn" style="margin-bottom:16px;">+ Adicionar produto</button>
+    <div id="productsAdminList" class="products-admin-list"></div>
+  </div>
+
+  <div class="admin-panel" data-admin-panel="pedidos">
+    <p class="admin-sub">Pedidos enviados pelo site. Altere o status conforme for preparando e entregando.</p>
+    <div id="ordersList" class="orders-list"></div>
+  </div>
+
+  <div class="admin-panel" data-admin-panel="faturamento">
+    <p class="admin-sub">Faturamento estimado com base nos pedidos finalizados pelo site (pedidos cancelados não entram na soma).</p>
+    <div class="revenue-total" id="revenueTotal">R$ 0,00 <span>faturamento total</span></div>
+    <div id="revenueMonthly" class="revenue-monthly"></div>
+    <button class="admin-note-btn" id="resetRevenueBtn">Apagar todo o histórico de pedidos</button>
+  </div>
+
+  <div class="admin-panel" data-admin-panel="horarios">
+    <p class="admin-sub">Defina o horário de funcionamento de cada dia (com pausa, se houver). Isso controla o aviso 🟢/🔴 ao lado do nome da loja.</p>
+    <div id="hoursDaysList" class="hours-rows"></div>
+    <button class="btn btn-primary admin-submit" id="saveHoursBtn">Salvar horário</button>
+    <p class="admin-note" id="hoursSavedNote" style="display:none;">Horário salvo com sucesso!</p>
+  </div>
+</div>
+
+<div class="admin-overlay" id="productFormOverlay"></div>
+<div class="admin-modal admin-dashboard" id="productFormModal">
+  <button class="admin-modal-close" id="productFormClose" aria-label="Fechar">✕</button>
+  <h3 id="productFormTitle">Adicionar produto</h3>
+  <div class="detail-field">
+    <label class="detail-field-label">Nome do produto</label>
+    <input type="text" id="pfName" class="admin-input" placeholder="Ex: Torta de Chocolate">
+  </div>
+  <div class="detail-field">
+    <label class="detail-field-label">Categoria</label>
+    <input type="text" id="pfCategory" class="admin-input" list="pfCategoryOptions" placeholder="Ex: Tortinhas">
+    <datalist id="pfCategoryOptions"></datalist>
+  </div>
+  <div class="detail-field">
+    <label class="detail-field-label">Descrição curta (aparece na lista)</label>
+    <input type="text" id="pfShortDesc" class="admin-input" placeholder="Ex: 200g, base amanteigada com creme de limão.">
+  </div>
+  <div class="detail-field">
+    <label class="detail-field-label">Descrição completa (aparece em "Ver mais detalhes")</label>
+    <input type="text" id="pfLongDesc" class="admin-input" placeholder="Descrição mais detalhada do produto">
+  </div>
+  <div class="detail-field">
+    <label class="detail-field-label">Imagem do produto</label>
+    <input type="file" id="pfImageInput" accept="image/*" class="admin-input">
+    <div id="pfImagePreviewWrap" style="display:none; margin-top:10px;">
+      <img id="pfImagePreview" style="width:80px; height:80px; object-fit:cover; border-radius:14px;">
+      <button type="button" class="admin-note-btn" id="pfRemoveImageBtn" style="display:inline-block; margin:8px 0 0;">Remover imagem</button>
+    </div>
+  </div>
+  <div class="detail-field">
+    <label class="detail-field-label">Preço</label>
+    <div class="size-options" style="margin-bottom:12px;">
+      <label class="radio-pill"><input type="radio" name="pfPriceMode" value="single" checked>Preço único</label>
+      <label class="radio-pill"><input type="radio" name="pfPriceMode" value="variants">Vários tamanhos/opções</label>
+    </div>
+    <div id="pfSinglePriceWrap">
+      <input type="number" step="0.01" min="0" id="pfSinglePrice" class="admin-input" placeholder="Preço em R$, ex: 10.00">
+    </div>
+    <div id="pfVariantsWrap" style="display:none;">
+      <div id="pfVariantsList" class="editor-rows"></div>
+      <button type="button" class="admin-note-btn" id="pfAddVariantBtn" style="margin-top:6px;">+ Adicionar opção de tamanho</button>
+    </div>
+  </div>
+  <div class="detail-field">
+    <label class="detail-field-label">Sabores (opcional)</label>
+    <input type="text" id="pfFlavors" class="admin-input" placeholder="Separe por vírgula: Morango, Chocolate, Limão">
+  </div>
+  <div class="detail-field">
+    <label class="detail-field-label">Adicionais (opcional)</label>
+    <div id="pfAddonsList" class="editor-rows"></div>
+    <button type="button" class="admin-note-btn" id="pfAddAddonBtn" style="margin-top:6px;">+ Adicionar opcional</button>
+  </div>
+  <div class="detail-field">
+    <label class="detail-field-label">Estoque (deixe em branco para não limitar)</label>
+    <input type="number" min="0" id="pfStock" class="admin-input" placeholder="Ex: 10">
+  </div>
+  <p class="admin-error" id="pfError" style="display:none;">Preencha ao menos o nome, a categoria e o preço.</p>
+  <button class="btn btn-primary admin-submit" id="pfSaveBtn">Salvar produto</button>
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Carrinho de compras">
+  <div class="cart-header">
+    <h3>Sua sacola</h3>
+    <button class="cart-close" id="cartCloseBtn" aria-label="Fechar carrinho">✕</button>
+  </div>
+  <div class="cart-fulfillment-info" id="cartFulfillmentInfo"></div>
+  <div class="cart-items" id="cartItemsWrap">
+    <div class="cart-empty" id="cartEmptyMsg">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.7 12.4a2 2 0 002 1.6h8.2a2 2 0 002-1.6L21 8H6"/></svg>
+      Sua sacola está vazia.<br>Escolha algo docinho no cardápio!
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-payment-block">
+      <label class="detail-field-label">Forma de pagamento</label>
+      <div class="payment-options" id="paymentOptions">
+        <label class="radio-pill"><input type="radio" name="paymentMethod" value="Pix">Pix</label>
+        <label class="radio-pill"><input type="radio" name="paymentMethod" value="Débito">Débito</label>
+        <label class="radio-pill"><input type="radio" name="paymentMethod" value="Crédito (link de pagamento online)">Crédito</label>
+      </div>
+      <p class="payment-note">O Pix ou o link de pagamento é enviado pelo WhatsApp após o pedido.</p>
+      <p class="payment-error" id="paymentError" style="display:none;">Escolha uma forma de pagamento para continuar.</p>
+    </div>
+    <div class="cart-total-row"><span>Total</span><b id="cartTotal">R$ 0,00</b></div>
+    <button class="cart-checkout" id="cartCheckoutBtn" disabled>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.2c-.3.7-1.5 1.4-2.1 1.5-.5.1-1.2.2-3.8-.8-3.2-1.3-5.2-4.5-5.4-4.7-.2-.2-1.3-1.7-1.3-3.2 0-1.5.8-2.3 1.1-2.6.3-.3.6-.4.8-.4h.6c.2 0 .5 0 .7.6.3.7.9 2.2 1 2.4.1.2.1.4 0 .6-.1.2-.2.4-.4.6l-.5.6c-.2.2-.3.4-.1.7.2.3.9 1.5 1.9 2.4 1.3 1.2 2.4 1.6 2.7 1.7.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.2.5.2.6.3.1.3.1.7-.2 1.4z"/></svg>
+      Finalizar no WhatsApp
+    </button>
+  </div>
+</aside>
+
+<div class="admin-overlay" id="fulfillmentOverlay"></div>
+
+<div class="admin-modal" id="fulfillmentChoiceModal">
+  <button class="admin-modal-close" id="fulfillmentChoiceClose" aria-label="Fechar">✕</button>
+  <h3>Como você quer receber seu pedido?</h3>
+  <p class="admin-sub">Escolha uma opção para continuar com a sua sacola.</p>
+  <button class="btn btn-primary admin-submit" id="choosePickupBtn" style="margin-bottom:12px;">📍 Retirar no local</button>
+  <button class="btn btn-ghost admin-submit" id="chooseDeliveryBtn">🚚 Entregar no domicílio</button>
+</div>
+
+<div class="admin-modal" id="pickupConfirmModal">
+  <button class="admin-modal-close" id="pickupConfirmClose" aria-label="Fechar">✕</button>
+  <h3>Retirar no local</h3>
+  <p class="admin-sub">Você pode retirar seu pedido no endereço abaixo:</p>
+  <div class="pickup-address-box" id="pickupAddressBox"></div>
+  <button class="btn btn-primary admin-submit" id="pickupContinueBtn">Continuar para a sacola</button>
+  <button class="admin-note-btn" id="pickupBackBtn" style="margin-top:14px;">Voltar</button>
+</div>
+
+<div class="admin-modal" id="deliveryFormModal">
+  <button class="admin-modal-close" id="deliveryFormClose" aria-label="Fechar">✕</button>
+  <h3>Entregar no domicílio</h3>
+  <p class="admin-sub">Informe os dados para a entrega.</p>
+  <input type="text" id="deliveryName" class="admin-input" placeholder="Nome" autocomplete="name">
+  <input type="text" id="deliveryAddress" class="admin-input" placeholder="Endereço (rua e número)" autocomplete="street-address">
+  <input type="text" id="deliveryBairro" class="admin-input" placeholder="Bairro" autocomplete="address-level3">
+  <input type="text" id="deliveryReference" class="admin-input" placeholder="Ponto de referência (opcional)">
+  <p class="admin-error" id="deliveryError" style="display:none;">Preencha ao menos nome, endereço e bairro para continuar.</p>
+  <button class="btn btn-primary admin-submit" id="deliveryContinueBtn">Continuar para a sacola</button>
+  <button class="admin-note-btn" id="deliveryBackBtn" style="margin-top:14px;">Voltar</button>
+</div>
+
+<script>
+  // ---------- utilidades ----------
+  function formatBRL(v){
+    return 'R$ ' + (v || 0).toFixed(2).replace('.', ',');
+  }
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ---------- armazenamento (Firebase Realtime Database, com reserva local) ----------
+  // Os dados (produtos, pedidos, horários) ficam salvos no Firebase, então qualquer
+  // aparelho que acessar o site (celular, tablet, computador) vê as mesmas informações.
+  // Se por algum motivo o Firebase não responder (ex: sem internet), o site usa uma
+  // cópia local (localStorage) só para não travar a página, e volta a sincronizar
+  // com o Firebase assim que a conexão voltar.
+  const FIREBASE_DB_URL = 'https://dose-de-docura-default-rtdb.firebaseio.com';
+
+  async function storageGet(key, shared){
+    try{
+      const res = await window.storage.get(key, shared);
+      return res ? JSON.parse(res.value) : null;
+    }catch(e){
+      // não está rodando dentro do ambiente Claude — segue para o Firebase
+    }
+    try{
+      const res = await fetch(`${FIREBASE_DB_URL}/${encodeURIComponent(key)}.json`);
+      if(res.ok){
+        const data = await res.json();
+        if(data !== null && data !== undefined){
+          try{ localStorage.setItem('doseDeDocura:' + key, JSON.stringify(data)); }catch(e2){}
+          return data;
+        }
+      }
+    }catch(e){
+      // sem internet ou Firebase fora do ar — cai para a cópia local
+    }
+    try{
+      const raw = localStorage.getItem('doseDeDocura:' + key);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){
+      return null;
+    }
+  }
+
+  async function storageSet(key, value, shared){
+    try{
+      localStorage.setItem('doseDeDocura:' + key, JSON.stringify(value));
+    }catch(e){
+      // localStorage pode falhar (ex: modo privado ou espaço cheio) — segue mesmo assim
+    }
+    let firebaseOk = false;
+    try{
+      const res = await fetch(`${FIREBASE_DB_URL}/${encodeURIComponent(key)}.json`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(value)
+      });
+      firebaseOk = res.ok;
+    }catch(e){
+      // sem internet ou Firebase fora do ar — os dados ficam só no localStorage por enquanto
+    }
+    try{
+      await window.storage.set(key, JSON.stringify(value), shared);
+    }catch(e){
+      // não está rodando dentro do ambiente Claude — tudo bem, Firebase já cobre a sincronização
+    }
+    return firebaseOk;
+  }
+
+  /* =========================================================
+     PRODUTOS — catálogo dinâmico (editável pela área administrativa)
+     ========================================================= */
+  let products = [];
+
+  const DEFAULT_PRODUCTS = [
+    {
+      id: 'trufa-tradicional', name: 'Trufas Tradicionais', category: 'Trufas Tradicionais',
+      shortDesc: '6 sabores clássicos, em 30g ou 45g.',
+      longDesc: 'Escolha o tamanho e o sabor da sua trufa.',
+      image: '', priceMode: 'variants', price: null,
+      variants: [{ label:'30g', price:2.50 }, { label:'45g', price:3.00 }],
+      flavors: ['Beijinho','Morango','Brigadeiro','Paçoca','Mousse de Limão','Maracujá'],
+      addons: [], stock: null
+    },
+    {
+      id: 'trufa-gourmet', name: 'Trufas Gourmet', category: 'Trufas Gourmet',
+      shortDesc: '7 sabores especiais, 45g cada.',
+      longDesc: '45g — escolha com ou sem Nutella no recheio e o sabor da sua trufa.',
+      image: '', priceMode: 'variants', price: null,
+      variants: [{ label:'Com Nutella', price:5.00 }, { label:'Sem Nutella', price:4.50 }],
+      flavors: ['Sensação','Ninho','Ninho com Nutella','Ninho com Morango','Prestígio','Oreo com Nutella','Ferrero Rocher'],
+      addons: [], stock: null
+    },
+    {
+      id: 'tortinha-limao', name: 'Tortinha de Limão', category: 'Tortinhas',
+      shortDesc: '200g de base amanteigada com creme de limão siciliano.',
+      longDesc: '200g de base amanteigada com creme de limão siciliano.',
+      image: '', priceMode: 'single', price: 10.00, variants: [],
+      flavors: [], addons: [{ label:'Colher', price:0.50 }], stock: null
+    },
+    {
+      id: 'afogadinho-ninho-nutella', name: 'Afogadinho Ninho c/ Nutella', category: 'Afogadinhos',
+      shortDesc: '200g, brownie de ninho afogado em Nutella.',
+      longDesc: '200g de brownie de ninho afogado em Nutella cremosa.',
+      image: '', priceMode: 'single', price: 12.00, variants: [],
+      flavors: [], addons: [{ label:'Colher', price:0.50 }], stock: null
+    },
+    {
+      id: 'afogadinho-ninho-morango', name: 'Afogadinho Ninho c/ Morango', category: 'Afogadinhos',
+      shortDesc: '200g, brownie de ninho afogado com morango.',
+      longDesc: '200g de brownie de ninho afogado com morango.',
+      image: '', priceMode: 'single', price: 15.00, variants: [],
+      flavors: [], addons: [{ label:'Colher', price:0.50 }], stock: null
+    },
+    {
+      id: 'afogadinho-dois-amores', name: 'Afogadinho Dois Amores', category: 'Afogadinhos',
+      shortDesc: '200g, brownie afogado com dois sabores.',
+      longDesc: '200g de brownie afogado — dois sabores em um só doce.',
+      image: '', priceMode: 'single', price: 10.00, variants: [],
+      flavors: [], addons: [{ label:'Colher', price:0.50 }], stock: null
+    },
+    {
+      id: 'palha-ninho', name: 'Palha Italiana de Ninho', category: 'Palha Italiana',
+      shortDesc: '120g — crocante, cremosa e feita com leite ninho.',
+      longDesc: '120g — crocante, cremosa e feita com leite ninho.',
+      image: '', priceMode: 'single', price: 5.00, variants: [],
+      flavors: [], addons: [], stock: null
+    },
+    {
+      id: 'palha-oreo', name: 'Palha Italiana de Oreo', category: 'Palha Italiana',
+      shortDesc: '120g — recheio cremoso com pedaços de Oreo.',
+      longDesc: '120g — recheio cremoso com pedaços de Oreo.',
+      image: '', priceMode: 'single', price: 7.00, variants: [],
+      flavors: [], addons: [], stock: null
+    },
+    {
+      id: 'copo-brownie-maracuja', name: 'Copo Brownie Maracujá', category: 'Copos',
+      shortDesc: 'Camadas de brownie com creme de maracujá.',
+      longDesc: 'Camadas de brownie com creme de maracujá, disponível em três tamanhos.',
+      image: '', priceMode: 'variants', price: null,
+      variants: [{ label:'150ml', price:14.00 }, { label:'200ml', price:16.00 }, { label:'300ml', price:20.00 }],
+      flavors: [], addons: [{ label:'Colher', price:0.50 }], stock: null
+    },
+    {
+      id: 'copo-supreme-tentacao', name: 'Copo Supreme Tentação', category: 'Copos',
+      shortDesc: 'Camadas generosas do nosso copo mais pedido.',
+      longDesc: 'Camadas generosas do nosso copo mais pedido, disponível em três tamanhos.',
+      image: '', priceMode: 'variants', price: null,
+      variants: [{ label:'150ml', price:14.00 }, { label:'200ml', price:16.00 }, { label:'300ml', price:20.00 }],
+      flavors: [], addons: [{ label:'Colher', price:0.50 }], stock: null
+    },
+    {
+      id: 'copo-dois-amores', name: 'Copo Dois Amores', category: 'Copos',
+      shortDesc: 'Dois sabores queridinhos no mesmo copo.',
+      longDesc: 'Dois sabores queridinhos em camadas no mesmo copo, disponível em três tamanhos.',
+      image: '', priceMode: 'variants', price: null,
+      variants: [{ label:'150ml', price:8.00 }, { label:'200ml', price:12.00 }, { label:'300ml', price:17.00 }],
+      flavors: [],
+      addons: [{ label:'Colher', price:0.50 }, { label:'Brownie', price:1.00 }, { label:'Morango', price:2.50 }, { label:'Uva verde', price:1.50 }],
+      stock: null
+    }
+  ];
+
+  async function loadProducts(){
+    let data = await storageGet('products', true);
+    if(!data || !Array.isArray(data) || data.length === 0){
+      data = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+      await storageSet('products', data, true);
+    }
+    return data;
+  }
+  async function saveProducts(){
+    await storageSet('products', products, true);
+  }
+
+  function priceLabel(p){
+    if(p.priceMode === 'variants' && p.variants && p.variants.length){
+      const min = Math.min(...p.variants.map(v => v.price));
+      return p.variants.length > 1 ? `A partir de ${formatBRL(min)}` : formatBRL(min);
+    }
+    return formatBRL(p.price || 0);
+  }
+
+  function renderDetailFieldsHTML(p){
+    let html = `<p class="detail-full-desc">${escapeHtml(p.longDesc || p.shortDesc || '')}</p>`;
+    if(p.priceMode === 'variants' && p.variants && p.variants.length){
+      html += `<div class="detail-field"><label class="detail-field-label">Tamanho / Opção</label><div class="size-options">`;
+      p.variants.forEach((v, i) => {
+        html += `<label class="radio-pill"><input type="radio" name="size" value="${v.price}" data-label="${escapeHtml(v.label)}" ${i===0?'checked':''}>${escapeHtml(v.label)} <b>${formatBRL(v.price)}</b></label>`;
+      });
+      html += `</div></div>`;
+    }
+    if(p.flavors && p.flavors.length){
+      html += `<div class="detail-field"><label class="detail-field-label">Sabor</label><select class="detail-flavor-select">`;
+      p.flavors.forEach(f => { html += `<option>${escapeHtml(f)}</option>`; });
+      html += `</select></div>`;
+    }
+    if(p.addons && p.addons.length){
+      html += `<div class="detail-field"><label class="detail-field-label">Adicion${p.addons.length>1?'ais':'al'} (opcional)</label><div class="addon-options">`;
+      p.addons.forEach(a => {
+        html += `<label class="checkbox-pill"><input type="checkbox" class="detail-addon-checkbox" value="${a.price}" data-label="${escapeHtml(a.label)}">${escapeHtml(a.label)} <span>+${formatBRL(a.price)}</span></label>`;
+      });
+      html += `</div></div>`;
+    }
+    const basePriceAttr = (p.priceMode === 'single') ? ` data-base-price="${p.price || 0}"` : '';
+    html += `<button class="btn btn-primary detail-add-btn" data-base-name="${escapeHtml(p.name)}"${basePriceAttr}>Adicionar à sacola</button>`;
+    return html;
+  }
+
+  function renderListItemHTML(p){
+    const thumbInner = p.image
+      ? `<img src="${p.image}" alt="${escapeHtml(p.name)}">`
+      : `<span class="item-thumb-emoji">🍮</span>`;
+    const needsDetail = (p.priceMode === 'variants') || (p.flavors && p.flavors.length > 0) || (p.addons && p.addons.length > 0);
+    const quickBtn = needsDetail
+      ? `<button class="add-btn open-detail" data-detail="${p.id}" aria-label="Ver opções de ${escapeHtml(p.name)}">+</button>`
+      : `<button class="add-btn" data-name="${escapeHtml(p.name)}" data-price="${p.price || 0}" aria-label="Adicionar ${escapeHtml(p.name)}">+</button>`;
+    const outOfStockClass = (p.stock !== null && p.stock !== undefined && p.stock <= 0) ? ' out-of-stock' : '';
+    return `
+      <div class="menu-list-item${outOfStockClass}" data-product="${p.id}">
+        <div class="item-thumb">${thumbInner}</div>
+        <div class="item-info">
+          <h4>${escapeHtml(p.name)} <span class="stock-flag">Esgotado</span></h4>
+          <p class="item-short-desc">${escapeHtml(p.shortDesc || '')}</p>
+          <button class="detail-link" data-detail="${p.id}">Ver mais detalhes</button>
+        </div>
+        <div class="item-action">
+          <span class="price">${priceLabel(p)}</span>
+          ${quickBtn}
+        </div>
+        <div class="item-detail-content" hidden>${renderDetailFieldsHTML(p)}</div>
+      </div>`;
+  }
+
+  function categorySlug(name){
+    return (String(name).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')) || 'geral';
+  }
+
+  function renderMenu(){
+    const categoryNav = document.getElementById('categoryNav');
+    const menuContainer = document.getElementById('menuContainer');
+    const grouped = new Map();
+    products.forEach(p => {
+      const cat = p.category || 'Outros';
+      if(!grouped.has(cat)) grouped.set(cat, []);
+      grouped.get(cat).push(p);
+    });
+
+    categoryNav.innerHTML = '';
+    menuContainer.innerHTML = '';
+
+    if(grouped.size === 0){
+      menuContainer.innerHTML = '<p style="text-align:center;color:#a8846b;padding:40px 0;">Nenhum produto cadastrado no momento.</p>';
+      return;
+    }
+
+    let first = true;
+    grouped.forEach((items, catName) => {
+      const slug = categorySlug(catName);
+      const chip = document.createElement('button');
+      chip.className = 'category-chip' + (first ? ' active' : '');
+      chip.dataset.cat = slug;
+      chip.textContent = catName;
+      categoryNav.appendChild(chip);
+
+      const block = document.createElement('div');
+      block.className = 'menu-category-block';
+      block.id = 'cat-' + slug;
+      block.dataset.cat = slug;
+      block.innerHTML = `<h3 class="category-title">${escapeHtml(catName)}</h3><div class="menu-list">${items.map(renderListItemHTML).join('')}</div>`;
+      menuContainer.appendChild(block);
+      first = false;
+    });
+
+    attachCategoryNavEvents();
+  }
+
+  function attachCategoryNavEvents(){
+    const chips = document.querySelectorAll('.category-chip');
+    const blocks = document.querySelectorAll('.menu-category-block');
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const target = document.getElementById('cat-' + chip.dataset.cat);
+        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    if(window._categoryObserver) window._categoryObserver.disconnect();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const cat = entry.target.dataset.cat;
+          chips.forEach(c => c.classList.toggle('active', c.dataset.cat === cat));
+        }
+      });
+    }, { rootMargin: '-160px 0px -60% 0px', threshold: 0 });
+    blocks.forEach(b => observer.observe(b));
+    window._categoryObserver = observer;
+  }
+
+  /* =========================================================
+     CARRINHO
+     ========================================================= */
+  const WHATSAPP_NUMBER = '5583993007342';
+  let cart = [];
+
+  const cartBtn = document.getElementById('cartOpenBtn');
+  const cartCloseBtn = document.getElementById('cartCloseBtn');
+  const cartDrawer = document.getElementById('cartDrawer');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const cartBadge = document.getElementById('cartBadge');
+  const cartItemsWrap = document.getElementById('cartItemsWrap');
+  const cartEmptyMsg = document.getElementById('cartEmptyMsg');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
+
+  const STORE_ADDRESS = 'Rua Alice Gaudêncio, 49 – Bairro Monte Castelo, Campina Grande - PB, CEP 58407-028';
+  let fulfillmentInfo = null; // { type:'retirada' } ou { type:'entrega', name, address, bairro, reference }
+
+  function actuallyOpenCart(){
+    cartDrawer.classList.add('open');
+    cartOverlay.classList.add('open');
+    renderFulfillmentSummary();
+  }
+  function closeCart(){ cartDrawer.classList.remove('open'); cartOverlay.classList.remove('open'); }
+
+  function openCart(){
+    if(!fulfillmentInfo){ openFulfillmentChoice(); return; }
+    actuallyOpenCart();
+  }
+
+  function renderFulfillmentSummary(){
+    const el = document.getElementById('cartFulfillmentInfo');
+    if(!fulfillmentInfo){ el.innerHTML = ''; return; }
+    const label = fulfillmentInfo.type === 'retirada'
+      ? '📍 Retirar no local'
+      : `🚚 Entregar para ${escapeHtml(fulfillmentInfo.name)}`;
+    el.innerHTML = `<span>${label}</span><button class="change-fulfillment-btn" id="changeFulfillmentBtn">Trocar</button>`;
+    document.getElementById('changeFulfillmentBtn').addEventListener('click', () => {
+      closeCart();
+      setTimeout(openFulfillmentChoice, 250);
+    });
+  }
+
+  // ---------- retirar no local / entregar no domicílio ----------
+  const fulfillmentOverlay = document.getElementById('fulfillmentOverlay');
+  const fulfillmentChoiceModal = document.getElementById('fulfillmentChoiceModal');
+  const pickupConfirmModal = document.getElementById('pickupConfirmModal');
+  const deliveryFormModal = document.getElementById('deliveryFormModal');
+  const pickupAddressBox = document.getElementById('pickupAddressBox');
+
+  function closeAllFulfillmentModals(){
+    fulfillmentOverlay.classList.remove('open');
+    fulfillmentChoiceModal.classList.remove('open');
+    pickupConfirmModal.classList.remove('open');
+    deliveryFormModal.classList.remove('open');
+  }
+  function openFulfillmentChoice(){
+    closeAllFulfillmentModals();
+    fulfillmentOverlay.classList.add('open');
+    fulfillmentChoiceModal.classList.add('open');
+  }
+
+  document.getElementById('fulfillmentChoiceClose').addEventListener('click', closeAllFulfillmentModals);
+  document.getElementById('pickupConfirmClose').addEventListener('click', closeAllFulfillmentModals);
+  document.getElementById('deliveryFormClose').addEventListener('click', closeAllFulfillmentModals);
+  fulfillmentOverlay.addEventListener('click', closeAllFulfillmentModals);
+
+  document.getElementById('choosePickupBtn').addEventListener('click', () => {
+    pickupAddressBox.textContent = STORE_ADDRESS;
+    fulfillmentChoiceModal.classList.remove('open');
+    pickupConfirmModal.classList.add('open');
+  });
+  document.getElementById('pickupBackBtn').addEventListener('click', () => {
+    pickupConfirmModal.classList.remove('open');
+    fulfillmentChoiceModal.classList.add('open');
+  });
+  document.getElementById('pickupContinueBtn').addEventListener('click', () => {
+    fulfillmentInfo = { type: 'retirada' };
+    closeAllFulfillmentModals();
+    actuallyOpenCart();
+  });
+
+  document.getElementById('chooseDeliveryBtn').addEventListener('click', () => {
+    fulfillmentChoiceModal.classList.remove('open');
+    deliveryFormModal.classList.add('open');
+  });
+  document.getElementById('deliveryBackBtn').addEventListener('click', () => {
+    deliveryFormModal.classList.remove('open');
+    fulfillmentChoiceModal.classList.add('open');
+  });
+  document.getElementById('deliveryContinueBtn').addEventListener('click', () => {
+    const name = document.getElementById('deliveryName').value.trim();
+    const address = document.getElementById('deliveryAddress').value.trim();
+    const bairro = document.getElementById('deliveryBairro').value.trim();
+    const reference = document.getElementById('deliveryReference').value.trim();
+    const errorEl = document.getElementById('deliveryError');
+    if(!name || !address || !bairro){
+      errorEl.style.display = 'block';
+      return;
+    }
+    errorEl.style.display = 'none';
+    fulfillmentInfo = { type: 'entrega', name, address, bairro, reference: reference || 'Não informado' };
+    closeAllFulfillmentModals();
+    actuallyOpenCart();
+  });
+
+  cartBtn.addEventListener('click', openCart);
+  cartCloseBtn.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+
+  function addToCart(name, price, btnEl){
+    const existing = cart.find(i => i.name === name);
+    if(existing){ existing.qty += 1; }
+    else{ cart.push({ name, price, qty: 1 }); }
+    renderCart();
+    if(btnEl){
+      const originalHTML = btnEl.innerHTML;
+      btnEl.classList.add('added');
+      btnEl.innerHTML = btnEl.classList.contains('option-pill') ? 'Adicionado ✓' : '✓';
+      setTimeout(() => { btnEl.classList.remove('added'); btnEl.innerHTML = originalHTML; }, 900);
+    }
+    if(typeof closeProductDetail === 'function') closeProductDetail();
+    openCart();
+  }
+
+  function changeQty(name, delta){
+    const item = cart.find(i => i.name === name);
+    if(!item) return;
+    item.qty += delta;
+    if(item.qty <= 0){ cart = cart.filter(i => i.name !== name); }
+    renderCart();
+  }
+
+  function removeItem(name){
+    cart = cart.filter(i => i.name !== name);
+    renderCart();
+  }
+
+  function renderCart(){
+    const totalCount = cart.reduce((s,i) => s + i.qty, 0);
+    cartBadge.textContent = totalCount;
+    cartBadge.style.display = totalCount > 0 ? 'flex' : 'none';
+
+    if(cart.length === 0){
+      cartItemsWrap.innerHTML = '';
+      cartItemsWrap.appendChild(cartEmptyMsg);
+      cartCheckoutBtn.disabled = true;
+      cartTotalEl.textContent = formatBRL(0);
+      return;
+    }
+
+    cartItemsWrap.innerHTML = '';
+    let total = 0;
+    cart.forEach(item => {
+      const lineTotal = item.price * item.qty;
+      total += lineTotal;
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML = `
+        <div class="cart-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4A2C1D" stroke-width="1.5"><circle cx="12" cy="12" r="7"/></svg>
+        </div>
+        <div class="cart-item-info">
+          <h4>${escapeHtml(item.name)}</h4>
+          <div class="unit-price">${formatBRL(item.price)} / un.</div>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="minus" data-name="${escapeHtml(item.name)}" aria-label="Diminuir quantidade">−</button>
+            <span class="qty-val">${item.qty}</span>
+            <button class="qty-btn" data-action="plus" data-name="${escapeHtml(item.name)}" aria-label="Aumentar quantidade">+</button>
+          </div>
+          <div class="cart-item-remove" data-action="remove" data-name="${escapeHtml(item.name)}">Remover</div>
+        </div>
+        <div class="cart-item-total">${formatBRL(lineTotal)}</div>
+      `;
+      cartItemsWrap.appendChild(row);
+    });
+    cartTotalEl.textContent = formatBRL(total);
+    cartCheckoutBtn.disabled = false;
+  }
+
+  // delegação de clique: funciona tanto para os botões da lista quanto para
+  // os que são exibidos dinamicamente dentro do modal de detalhes
+  document.addEventListener('click', (e) => {
+    const detailAddBtn = e.target.closest('.detail-add-btn');
+    if(detailAddBtn){
+      handleDetailAdd(detailAddBtn);
+      return;
+    }
+    const addBtn = e.target.closest('.add-btn:not(.open-detail)');
+    if(addBtn && addBtn.dataset.name){
+      addToCart(addBtn.dataset.name, parseFloat(addBtn.dataset.price), addBtn);
+      return;
+    }
+    const detailTrigger = e.target.closest('[data-detail]');
+    if(detailTrigger){
+      openProductDetail(detailTrigger.dataset.detail);
+    }
+  });
+
+  function handleDetailAdd(btn){
+    let price = 0;
+    const nameParts = [btn.dataset.baseName];
+
+    const sizeRadio = detailBody.querySelector('input[name="size"]:checked');
+    if(sizeRadio){
+      price += parseFloat(sizeRadio.value);
+      nameParts.push(sizeRadio.dataset.label);
+    }else if(btn.dataset.basePrice){
+      price += parseFloat(btn.dataset.basePrice);
+    }
+
+    const flavorSelect = detailBody.querySelector('.detail-flavor-select');
+    if(flavorSelect){
+      nameParts.push('Sabor: ' + flavorSelect.value);
+    }
+
+    const addonChecks = detailBody.querySelectorAll('.detail-addon-checkbox:checked');
+    const addonLabels = [];
+    addonChecks.forEach(chk => {
+      price += parseFloat(chk.value);
+      addonLabels.push(chk.dataset.label);
+    });
+
+    let name = nameParts.join(' — ');
+    if(addonLabels.length){
+      name += ' + ' + addonLabels.join(', ');
+    }
+
+    addToCart(name, price, btn);
+  }
+
+  // ---------- modal "Ver mais detalhes" ----------
+  const detailOverlay = document.getElementById('detailOverlay');
+  const productDetailModal = document.getElementById('productDetailModal');
+  const detailIcon = document.getElementById('detailIcon');
+  const detailTitle = document.getElementById('detailTitle');
+  const detailBody = document.getElementById('detailBody');
+  const detailEsgotadoNote = document.getElementById('detailEsgotadoNote');
+
+  function openProductDetail(productId){
+    const item = document.querySelector('.menu-list-item[data-product="' + productId + '"]');
+    if(!item) return;
+    const thumb = item.querySelector('.item-thumb');
+    const nameEl = item.querySelector('.item-info h4');
+    const content = item.querySelector('.item-detail-content');
+
+    detailIcon.innerHTML = thumb ? thumb.innerHTML : '';
+    detailTitle.textContent = nameEl ? nameEl.childNodes[0].textContent.trim() : '';
+    detailBody.innerHTML = content ? content.innerHTML : '';
+
+    const outOfStock = item.classList.contains('out-of-stock');
+    productDetailModal.classList.toggle('out-of-stock', outOfStock);
+
+    detailOverlay.classList.add('open');
+    productDetailModal.classList.add('open');
+  }
+  function closeProductDetail(){
+    detailOverlay.classList.remove('open');
+    productDetailModal.classList.remove('open');
+  }
+  document.getElementById('detailCloseBtn').addEventListener('click', closeProductDetail);
+  detailOverlay.addEventListener('click', closeProductDetail);
+
+  cartItemsWrap.addEventListener('click', (e) => {
+    const target = e.target.closest('[data-action]');
+    if(!target) return;
+    const name = target.dataset.name;
+    if(target.dataset.action === 'plus') changeQty(name, 1);
+    if(target.dataset.action === 'minus') changeQty(name, -1);
+    if(target.dataset.action === 'remove') removeItem(name);
+  });
+
+  cartCheckoutBtn.addEventListener('click', async () => {
+    if(cart.length === 0 || !fulfillmentInfo) return;
+
+    const paymentRadio = document.querySelector('input[name="paymentMethod"]:checked');
+    const paymentError = document.getElementById('paymentError');
+    if(!paymentRadio){
+      paymentError.style.display = 'block';
+      document.getElementById('paymentOptions').scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+    paymentError.style.display = 'none';
+    const paymentMethod = paymentRadio.value;
+
+    let total = 0;
+    cart.forEach(item => { total += item.price * item.qty; });
+
+    const order = {
+      id: 'order_' + Date.now(),
+      date: new Date().toISOString(),
+      fulfillment: fulfillmentInfo,
+      payment: paymentMethod,
+      items: cart.map(i => ({ name: i.name, price: i.price, qty: i.qty })),
+      total,
+      status: 'Recebido'
+    };
+    await logOrder(order);
+
+    let msg = 'Olá! Gostaria de fazer o seguinte pedido na Dose de Doçura:\n\n';
+    if(fulfillmentInfo.type === 'retirada'){
+      msg += `*Retirada no local:*\n${STORE_ADDRESS}\n\n`;
+    }else{
+      msg += `*Entrega no domicílio*\nNome: ${fulfillmentInfo.name}\nEndereço: ${fulfillmentInfo.address}\nBairro: ${fulfillmentInfo.bairro}\nPonto de referência: ${fulfillmentInfo.reference}\n\n`;
+    }
+    cart.forEach(item => {
+      const lineTotal = item.price * item.qty;
+      msg += `• ${item.qty}x ${item.name} — ${formatBRL(lineTotal)}\n`;
+    });
+    msg += `\n*Total: ${formatBRL(total)}*`;
+    msg += `\n*Forma de pagamento: ${paymentMethod}*`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  renderCart();
+
+  /* =========================================================
+     ÁREA ADMINISTRATIVA
+     Senha padrão definida abaixo. Troque por uma senha só sua.
+     Atenção: como este é um site estático, essa senha fica
+     visível no código-fonte para quem souber procurar — ela
+     impede acesso casual, mas não substitui um sistema de
+     login real. Para produção com dados sensíveis, o ideal é
+     um backend com autenticação de verdade.
+     ========================================================= */
+  const ADMIN_PASSWORD = 'Doceriadosede2026@';
+
+  // ---------- pedidos recebidos ----------
+  let memoryOrders = [];
+  async function loadOrders(){
+    const data = await storageGet('orders', true);
+    return data || memoryOrders;
+  }
+  async function saveOrders(ordersArr){
+    memoryOrders = ordersArr;
+    await storageSet('orders', ordersArr, true);
+  }
+  async function logOrder(order){
+    const ordersArr = await loadOrders();
+    ordersArr.push(order);
+    await saveOrders(ordersArr);
+  }
+
+  const ORDER_STATUSES = ['Recebido','Em preparo','Pronto/Saiu para entrega','Concluído','Cancelado'];
+
+  async function renderOrdersList(){
+    const ordersArr = await loadOrders();
+    const listEl = document.getElementById('ordersList');
+    if(ordersArr.length === 0){
+      listEl.innerHTML = '<div class="orders-empty">Nenhum pedido recebido ainda.</div>';
+      return;
+    }
+    const sorted = [...ordersArr].sort((a,b) => new Date(b.date) - new Date(a.date));
+    listEl.innerHTML = sorted.map(o => {
+      const dateStr = new Date(o.date).toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      const fulfillmentStr = o.fulfillment.type === 'retirada'
+        ? '📍 Retirada no local'
+        : `🚚 Entrega — ${escapeHtml(o.fulfillment.name)}, ${escapeHtml(o.fulfillment.address)}, ${escapeHtml(o.fulfillment.bairro)}${(o.fulfillment.reference && o.fulfillment.reference !== 'Não informado') ? ' (Ref: ' + escapeHtml(o.fulfillment.reference) + ')' : ''}`;
+      const itemsStr = o.items.map(i => `${i.qty}x ${escapeHtml(i.name)}`).join('<br>');
+      return `
+        <div class="order-card">
+          <div class="order-card-head">
+            <b>Pedido #${o.id.slice(-5)}</b>
+            <span>${dateStr}</span>
+          </div>
+          <div class="order-card-fulfillment">${fulfillmentStr}</div>
+          <div class="order-card-items">${itemsStr}</div>
+          <div class="order-card-footer">
+            <b>${formatBRL(o.total)}</b>
+            <select class="order-status-select" data-order-id="${o.id}">
+              ${ORDER_STATUSES.map(s => `<option value="${s}" ${s===o.status?'selected':''}>${s}</option>`).join('')}
+            </select>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  document.getElementById('ordersList').addEventListener('change', async (e) => {
+    const select = e.target.closest('.order-status-select');
+    if(!select) return;
+    const ordersArr = await loadOrders();
+    const order = ordersArr.find(o => o.id === select.dataset.orderId);
+    if(order){
+      order.status = select.value;
+      await saveOrders(ordersArr);
+    }
+  });
+
+  // ---------- faturamento ----------
+  function monthLabel(dateStr){
+    const d = new Date(dateStr);
+    const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    return `${months[d.getMonth()]} de ${d.getFullYear()}`;
+  }
+
+  async function renderRevenue(){
+    const ordersArr = await loadOrders();
+    const validOrders = ordersArr.filter(o => o.status !== 'Cancelado');
+    const totalEl = document.getElementById('revenueTotal');
+    const monthlyEl = document.getElementById('revenueMonthly');
+    const total = validOrders.reduce((s,o) => s + o.total, 0);
+    totalEl.innerHTML = `${formatBRL(total)}<span>faturamento total</span>`;
+
+    if(validOrders.length === 0){
+      monthlyEl.innerHTML = '<div class="revenue-empty">Nenhum pedido finalizado pelo site ainda.</div>';
+      return;
+    }
+
+    const groups = {};
+    validOrders.forEach(o => {
+      const d = new Date(o.date);
+      const key = `${d.getFullYear()}-${String(d.getMonth()).padStart(2,'0')}`;
+      groups[key] = (groups[key] || 0) + o.total;
+    });
+    const sortedKeys = Object.keys(groups).sort().reverse();
+    monthlyEl.innerHTML = '';
+    sortedKeys.forEach(key => {
+      const [year, month] = key.split('-');
+      const sample = new Date(parseInt(year), parseInt(month), 1);
+      const row = document.createElement('div');
+      row.className = 'revenue-row';
+      row.innerHTML = `<span>${monthLabel(sample)}</span><b>${formatBRL(groups[key])}</b>`;
+      monthlyEl.appendChild(row);
+    });
+  }
+
+  document.getElementById('resetRevenueBtn').addEventListener('click', async () => {
+    if(!confirm('Tem certeza que deseja apagar todo o histórico de pedidos? Essa ação não pode ser desfeita.')) return;
+    await saveOrders([]);
+    await renderRevenue();
+    await renderOrdersList();
+  });
+
+  // ---------- horário de funcionamento ----------
+  const WEEKDAYS = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+  // Terça a sexta: 11h–21h com pausa de 16h às 18h. Sábado e domingo: 12h–21h, sem pausa. Segunda: fechado.
+  const DEFAULT_HOURS = {
+    0: { closed: false, open: '12:00', close: '21:00', pauseStart: null,    pauseEnd: null },
+    1: { closed: true,  open: '11:00', close: '21:00', pauseStart: null,    pauseEnd: null },
+    2: { closed: false, open: '11:00', close: '21:00', pauseStart: '16:00', pauseEnd: '18:00' },
+    3: { closed: false, open: '11:00', close: '21:00', pauseStart: '16:00', pauseEnd: '18:00' },
+    4: { closed: false, open: '11:00', close: '21:00', pauseStart: '16:00', pauseEnd: '18:00' },
+    5: { closed: false, open: '11:00', close: '21:00', pauseStart: '16:00', pauseEnd: '18:00' },
+    6: { closed: false, open: '12:00', close: '21:00', pauseStart: null,    pauseEnd: null },
+  };
+  let memoryBusinessHours = null;
+
+  async function loadBusinessHours(){
+    const data = await storageGet('businessHours', true);
+    return data || memoryBusinessHours || DEFAULT_HOURS;
+  }
+  async function saveBusinessHours(hours){
+    memoryBusinessHours = hours;
+    await storageSet('businessHours', hours, true);
+  }
+
+  function renderHoursForm(hours){
+    const list = document.getElementById('hoursDaysList');
+    list.innerHTML = WEEKDAYS.map((day, idx) => {
+      const cfg = hours[idx] || { closed:true, open:'10:00', close:'19:00', pauseStart:null, pauseEnd:null };
+      const hasPause = !!(cfg.pauseStart && cfg.pauseEnd);
+      return `
+        <div class="hours-row-block" data-day-idx="${idx}">
+          <label class="hours-day-toggle">
+            <input type="checkbox" class="hours-open-checkbox" ${!cfg.closed ? 'checked' : ''}>
+            <b>${day}</b>
+          </label>
+          <div class="hours-details" style="${cfg.closed ? 'display:none;' : ''}">
+            <div class="hours-time-row">
+              <div class="detail-field">
+                <label class="detail-field-label">Abre às</label>
+                <input type="time" class="admin-input hours-open-input" value="${cfg.open || '10:00'}">
+              </div>
+              <div class="detail-field">
+                <label class="detail-field-label">Fecha às</label>
+                <input type="time" class="admin-input hours-close-input" value="${cfg.close || '19:00'}">
+              </div>
+            </div>
+            <label class="hours-pause-toggle">
+              <input type="checkbox" class="hours-pause-checkbox" ${hasPause ? 'checked' : ''}>
+              Tem pausa/intervalo nesse dia?
+            </label>
+            <div class="hours-time-row hours-pause-row" style="${hasPause ? '' : 'display:none;'}">
+              <div class="detail-field">
+                <label class="detail-field-label">Pausa de</label>
+                <input type="time" class="admin-input hours-pause-start-input" value="${cfg.pauseStart || '14:00'}">
+              </div>
+              <div class="detail-field">
+                <label class="detail-field-label">até</label>
+                <input type="time" class="admin-input hours-pause-end-input" value="${cfg.pauseEnd || '15:00'}">
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    list.querySelectorAll('.hours-row-block').forEach(block => {
+      block.querySelector('.hours-open-checkbox').addEventListener('change', (e) => {
+        block.querySelector('.hours-details').style.display = e.target.checked ? '' : 'none';
+      });
+      block.querySelector('.hours-pause-checkbox').addEventListener('change', (e) => {
+        block.querySelector('.hours-pause-row').style.display = e.target.checked ? '' : 'none';
+      });
+    });
+  }
+
+  document.getElementById('saveHoursBtn').addEventListener('click', async () => {
+    const newHours = {};
+    document.querySelectorAll('.hours-row-block').forEach(block => {
+      const idx = parseInt(block.dataset.dayIdx, 10);
+      const openChecked = block.querySelector('.hours-open-checkbox').checked;
+      if(!openChecked){
+        newHours[idx] = { closed:true, open:null, close:null, pauseStart:null, pauseEnd:null };
+        return;
+      }
+      const open = block.querySelector('.hours-open-input').value || '10:00';
+      const close = block.querySelector('.hours-close-input').value || '19:00';
+      const pauseChecked = block.querySelector('.hours-pause-checkbox').checked;
+      let pauseStart = null, pauseEnd = null;
+      if(pauseChecked){
+        pauseStart = block.querySelector('.hours-pause-start-input').value || null;
+        pauseEnd = block.querySelector('.hours-pause-end-input').value || null;
+      }
+      newHours[idx] = { closed:false, open, close, pauseStart, pauseEnd };
+    });
+    await saveBusinessHours(newHours);
+    await updateStoreStatusBadge(newHours);
+    const note = document.getElementById('hoursSavedNote');
+    note.style.display = 'block';
+    setTimeout(() => { note.style.display = 'none'; }, 2500);
+  });
+
+  const CLOSING_SOON_MINUTES = 60; // mostra "fecha às..." quando faltar até esse tempo para fechar/pausar
+
+  function prettyTime(hhmm){
+    if(!hhmm) return '';
+    const [h, m] = hhmm.split(':');
+    const hNum = parseInt(h, 10);
+    return m === '00' ? `${hNum}h` : `${hNum}h${m}`;
+  }
+
+  function getStoreStatusInfo(hours){
+    const now = new Date();
+    const day = now.getDay();
+    const current = now.getHours() * 60 + now.getMinutes();
+    const cfg = hours[day];
+
+    if(cfg && !cfg.closed){
+      const [openH, openM] = cfg.open.split(':').map(Number);
+      const [closeH, closeM] = cfg.close.split(':').map(Number);
+      const openMin = openH*60 + openM;
+      const closeMin = closeH*60 + closeM;
+      let pauseStartMin = null, pauseEndMin = null;
+      if(cfg.pauseStart && cfg.pauseEnd){
+        const [psH, psM] = cfg.pauseStart.split(':').map(Number);
+        const [peH, peM] = cfg.pauseEnd.split(':').map(Number);
+        pauseStartMin = psH*60 + psM;
+        pauseEndMin = peH*60 + peM;
+      }
+
+      if(current >= openMin && current < closeMin){
+        if(pauseStartMin !== null && current >= pauseStartMin && current < pauseEndMin){
+          // em pausa agora — reabre mais tarde no mesmo dia
+          return { open: false, sub: `abre às ${prettyTime(cfg.pauseEnd)}` };
+        }
+        // aberto agora — verifica se está perto de fechar (ou entrar em pausa)
+        let nextStopMin = closeMin, nextStopLabel = cfg.close;
+        if(pauseStartMin !== null && current < pauseStartMin){
+          nextStopMin = pauseStartMin;
+          nextStopLabel = cfg.pauseStart;
+        }
+        if(nextStopMin - current <= CLOSING_SOON_MINUTES){
+          return { open: true, sub: `fecha às ${prettyTime(nextStopLabel)}` };
+        }
+        return { open: true, sub: '' };
+      }
+      if(current < openMin){
+        return { open: false, sub: `abre às ${prettyTime(cfg.open)}` };
+      }
+      // já passou do horário de fechar hoje — cai para a busca do próximo dia aberto
+    }
+
+    for(let i = 1; i <= 7; i++){
+      const idx = (day + i) % 7;
+      const nextCfg = hours[idx];
+      if(nextCfg && !nextCfg.closed){
+        const dayLabel = i === 1 ? 'amanhã' : WEEKDAYS[idx].toLowerCase();
+        return { open: false, sub: `abre ${dayLabel} às ${prettyTime(nextCfg.open)}` };
+      }
+    }
+    return { open: false, sub: '' };
+  }
+
+  async function updateStoreStatusBadge(preloadedHours){
+    const hours = preloadedHours || await loadBusinessHours();
+    const badge = document.getElementById('storeStatusBadge');
+    const subEl = document.getElementById('storeStatusSub');
+    const info = getStoreStatusInfo(hours);
+    badge.textContent = info.open ? '🟢 Aberto' : '🔴 Fechado';
+    badge.classList.toggle('open', info.open);
+    badge.classList.toggle('closed', !info.open);
+    if(subEl){
+      subEl.textContent = info.sub;
+      subEl.style.display = info.sub ? 'block' : 'none';
+    }
+  }
+
+  // ---------- CRUD de produtos ----------
+  let pfEditingId = null;
+  let pfImageData = '';
+
+  const productFormOverlay = document.getElementById('productFormOverlay');
+  const productFormModal = document.getElementById('productFormModal');
+
+  function renderProductsAdminList(){
+    const listEl = document.getElementById('productsAdminList');
+    if(products.length === 0){
+      listEl.innerHTML = '<p style="text-align:center;color:#a8846b;padding:20px;">Nenhum produto cadastrado ainda.</p>';
+      return;
+    }
+    listEl.innerHTML = products.map(p => `
+      <div class="product-admin-row">
+        ${p.image ? `<img class="product-admin-thumb" src="${p.image}" alt="">` : `<div class="product-admin-thumb" style="display:flex;align-items:center;justify-content:center;">🍮</div>`}
+        <div class="product-admin-info">
+          <b>${escapeHtml(p.name)}</b>
+          <span>${escapeHtml(p.category)} · ${priceLabel(p)}${(p.stock !== null && p.stock !== undefined) ? ' · Estoque: ' + p.stock : ''}</span>
+        </div>
+        <div class="product-admin-actions">
+          <button type="button" data-edit-product="${p.id}">Editar</button>
+          <button type="button" class="delete-btn" data-delete-product="${p.id}">Remover</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('productsAdminList').addEventListener('click', async (e) => {
+    const editBtn = e.target.closest('[data-edit-product]');
+    if(editBtn){ openProductForm(editBtn.dataset.editProduct); return; }
+    const delBtn = e.target.closest('[data-delete-product]');
+    if(delBtn){
+      if(!confirm('Remover este produto do cardápio?')) return;
+      products = products.filter(p => p.id !== delBtn.dataset.deleteProduct);
+      await saveProducts();
+      renderMenu();
+      renderProductsAdminList();
+    }
+  });
+
+  document.getElementById('addProductBtn').addEventListener('click', () => openProductForm(null));
+
+  function pfPopulateCategoryOptions(){
+    const dl = document.getElementById('pfCategoryOptions');
+    const cats = Array.from(new Set(products.map(p => p.category))).filter(Boolean);
+    dl.innerHTML = cats.map(c => `<option value="${escapeHtml(c)}">`).join('');
+  }
+
+  function pfAddVariantRow(label, price){
+    const row = document.createElement('div');
+    row.className = 'editor-row';
+    row.innerHTML = `
+      <input type="text" class="editor-label" placeholder="Ex: 45g" value="${escapeHtml(label || '')}">
+      <input type="number" step="0.01" min="0" class="editor-price" placeholder="Preço" value="${price != null ? price : ''}">
+      <button type="button" aria-label="Remover">×</button>
+    `;
+    row.querySelector('button').addEventListener('click', () => row.remove());
+    document.getElementById('pfVariantsList').appendChild(row);
+  }
+  function pfAddAddonRow(label, price){
+    const row = document.createElement('div');
+    row.className = 'editor-row';
+    row.innerHTML = `
+      <input type="text" class="editor-label" placeholder="Ex: Colher" value="${escapeHtml(label || '')}">
+      <input type="number" step="0.01" min="0" class="editor-price" placeholder="Preço extra" value="${price != null ? price : ''}">
+      <button type="button" aria-label="Remover">×</button>
+    `;
+    row.querySelector('button').addEventListener('click', () => row.remove());
+    document.getElementById('pfAddonsList').appendChild(row);
+  }
+
+  document.getElementById('pfAddVariantBtn').addEventListener('click', () => pfAddVariantRow('', ''));
+  document.getElementById('pfAddAddonBtn').addEventListener('click', () => pfAddAddonRow('', ''));
+
+  document.querySelectorAll('input[name="pfPriceMode"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const mode = document.querySelector('input[name="pfPriceMode"]:checked').value;
+      document.getElementById('pfSinglePriceWrap').style.display = mode === 'single' ? 'block' : 'none';
+      document.getElementById('pfVariantsWrap').style.display = mode === 'variants' ? 'block' : 'none';
+    });
+  });
+
+  document.getElementById('pfImageInput').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      pfImageData = reader.result;
+      document.getElementById('pfImagePreview').src = pfImageData;
+      document.getElementById('pfImagePreviewWrap').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
+  document.getElementById('pfRemoveImageBtn').addEventListener('click', () => {
+    pfImageData = '';
+    document.getElementById('pfImageInput').value = '';
+    document.getElementById('pfImagePreviewWrap').style.display = 'none';
+  });
+
+  function pfResetForm(){
+    pfEditingId = null;
+    pfImageData = '';
+    document.getElementById('productFormTitle').textContent = 'Adicionar produto';
+    document.getElementById('pfName').value = '';
+    document.getElementById('pfCategory').value = '';
+    document.getElementById('pfShortDesc').value = '';
+    document.getElementById('pfLongDesc').value = '';
+    document.getElementById('pfImageInput').value = '';
+    document.getElementById('pfImagePreviewWrap').style.display = 'none';
+    document.querySelector('input[name="pfPriceMode"][value="single"]').checked = true;
+    document.getElementById('pfSinglePriceWrap').style.display = 'block';
+    document.getElementById('pfVariantsWrap').style.display = 'none';
+    document.getElementById('pfSinglePrice').value = '';
+    document.getElementById('pfVariantsList').innerHTML = '';
+    document.getElementById('pfFlavors').value = '';
+    document.getElementById('pfAddonsList').innerHTML = '';
+    document.getElementById('pfStock').value = '';
+    document.getElementById('pfError').style.display = 'none';
+  }
+
+  function openProductForm(editId){
+    pfResetForm();
+    pfPopulateCategoryOptions();
+    if(editId){
+      const p = products.find(pr => pr.id === editId);
+      if(p){
+        pfEditingId = p.id;
+        document.getElementById('productFormTitle').textContent = 'Editar produto';
+        document.getElementById('pfName').value = p.name;
+        document.getElementById('pfCategory').value = p.category;
+        document.getElementById('pfShortDesc').value = p.shortDesc || '';
+        document.getElementById('pfLongDesc').value = p.longDesc || '';
+        if(p.image){
+          pfImageData = p.image;
+          document.getElementById('pfImagePreview').src = p.image;
+          document.getElementById('pfImagePreviewWrap').style.display = 'block';
+        }
+        if(p.priceMode === 'variants'){
+          document.querySelector('input[name="pfPriceMode"][value="variants"]').checked = true;
+          document.getElementById('pfSinglePriceWrap').style.display = 'none';
+          document.getElementById('pfVariantsWrap').style.display = 'block';
+          (p.variants || []).forEach(v => pfAddVariantRow(v.label, v.price));
+        }else{
+          document.getElementById('pfSinglePrice').value = p.price != null ? p.price : '';
+        }
+        document.getElementById('pfFlavors').value = (p.flavors || []).join(', ');
+        (p.addons || []).forEach(a => pfAddAddonRow(a.label, a.price));
+        document.getElementById('pfStock').value = (p.stock !== null && p.stock !== undefined) ? p.stock : '';
+      }
+    }
+    productFormOverlay.classList.add('open');
+    productFormModal.classList.add('open');
+  }
+  function closeProductForm(){
+    productFormOverlay.classList.remove('open');
+    productFormModal.classList.remove('open');
+  }
+  document.getElementById('productFormClose').addEventListener('click', closeProductForm);
+  productFormOverlay.addEventListener('click', closeProductForm);
+
+  document.getElementById('pfSaveBtn').addEventListener('click', async () => {
+    const name = document.getElementById('pfName').value.trim();
+    const category = document.getElementById('pfCategory').value.trim();
+    const shortDesc = document.getElementById('pfShortDesc').value.trim();
+    const longDesc = document.getElementById('pfLongDesc').value.trim();
+    const priceMode = document.querySelector('input[name="pfPriceMode"]:checked').value;
+    const errorEl = document.getElementById('pfError');
+    errorEl.textContent = 'Preencha ao menos o nome, a categoria e o preço.';
+
+    let price = null;
+    let variants = [];
+    if(priceMode === 'single'){
+      const val = parseFloat(document.getElementById('pfSinglePrice').value);
+      if(isNaN(val)){ errorEl.style.display = 'block'; return; }
+      price = val;
+    }else{
+      document.querySelectorAll('#pfVariantsList .editor-row').forEach(row => {
+        const label = row.querySelector('.editor-label').value.trim();
+        const p = parseFloat(row.querySelector('.editor-price').value);
+        if(label && !isNaN(p)) variants.push({ label, price: p });
+      });
+      if(variants.length === 0){ errorEl.style.display = 'block'; return; }
+    }
+
+    if(!name || !category){ errorEl.style.display = 'block'; return; }
+    errorEl.style.display = 'none';
+
+    const flavors = document.getElementById('pfFlavors').value.split(',').map(s => s.trim()).filter(Boolean);
+    const addons = [];
+    document.querySelectorAll('#pfAddonsList .editor-row').forEach(row => {
+      const label = row.querySelector('.editor-label').value.trim();
+      const p = parseFloat(row.querySelector('.editor-price').value);
+      if(label && !isNaN(p)) addons.push({ label, price: p });
+    });
+    const stockVal = document.getElementById('pfStock').value;
+    const stock = stockVal === '' ? null : parseInt(stockVal, 10);
+
+    const productData = {
+      id: pfEditingId || ('prod_' + Date.now() + Math.floor(Math.random()*1000)),
+      name, category, shortDesc, longDesc,
+      image: pfImageData || '',
+      priceMode, price, variants, flavors, addons, stock
+    };
+
+    if(pfEditingId){
+      const idx = products.findIndex(p => p.id === pfEditingId);
+      if(idx > -1) products[idx] = productData;
+    }else{
+      products.push(productData);
+    }
+
+    await saveProducts();
+    renderMenu();
+    renderProductsAdminList();
+    closeProductForm();
+  });
+
+  // ---------- controle dos modais do admin ----------
+  const adminOverlay = document.getElementById('adminOverlay');
+  const adminLoginModal = document.getElementById('adminLoginModal');
+  const adminDashboard = document.getElementById('adminDashboard');
+  const adminPasswordInput = document.getElementById('adminPasswordInput');
+  const adminError = document.getElementById('adminError');
+
+  function openAdminLogin(){
+    adminOverlay.classList.add('open');
+    adminLoginModal.classList.add('open');
+    adminPasswordInput.value = '';
+    adminError.style.display = 'none';
+    setTimeout(() => adminPasswordInput.focus(), 100);
+  }
+  function closeAdminModals(){
+    adminOverlay.classList.remove('open');
+    adminLoginModal.classList.remove('open');
+    adminDashboard.classList.remove('open');
+  }
+  function openAdminDashboard(){
+    adminLoginModal.classList.remove('open');
+    adminDashboard.classList.add('open');
+    renderProductsAdminList();
+  }
+
+  document.getElementById('adminLinkBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    openAdminLogin();
+  });
+  document.getElementById('adminLoginClose').addEventListener('click', closeAdminModals);
+  document.getElementById('adminDashClose').addEventListener('click', closeAdminModals);
+  adminOverlay.addEventListener('click', closeAdminModals);
+
+  document.getElementById('adminLoginSubmit').addEventListener('click', () => {
+    if(adminPasswordInput.value === ADMIN_PASSWORD){
+      openAdminDashboard();
+    }else{
+      adminError.style.display = 'block';
+    }
+  });
+  adminPasswordInput.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') document.getElementById('adminLoginSubmit').click();
+  });
+
+  document.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', async () => {
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`.admin-panel[data-admin-panel="${tab.dataset.adminTab}"]`).classList.add('active');
+
+      if(tab.dataset.adminTab === 'produtos') renderProductsAdminList();
+      if(tab.dataset.adminTab === 'pedidos') await renderOrdersList();
+      if(tab.dataset.adminTab === 'faturamento') await renderRevenue();
+      if(tab.dataset.adminTab === 'horarios'){ renderHoursForm(await loadBusinessHours()); }
+    });
+  });
+
+  // ---------- inicialização ----------
+  (async function init(){
+    products = await loadProducts();
+    renderMenu();
+    const hours = await loadBusinessHours();
+    await updateStoreStatusBadge(hours);
+    setInterval(() => updateStoreStatusBadge(), 60000);
+  })();
+</script>
+
+</body>
+</html>
